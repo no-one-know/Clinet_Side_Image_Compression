@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>On-Device Image Compression using SVD</title>
+    <link rel="icon" href="/images/favicon.webp" type="image/webp" />
+  </head>
+
+  <body>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="root">
+      <div id="fileBrowser">
+        <input
+          type="file"
+          id="fileselect"
+          name="fileselect"
+          accept="image/*"
+          autocomplete="off"
+        />
+        <label for="fileselect">Upload File</label>
+      </div>
+      <div class="container hidden" id="loading_container">
+        <div class="h1Container">
+          <div class="cube h1 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h1 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+        </div>
+
+        <div class="h2Container">
+          <div class="cube h2 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h2 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+        </div>
+
+        <div class="h3Container">
+          <div class="cube h3 w1 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w1 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w1 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w2 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w2 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w2 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w3 l1">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w3 l2">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+
+          <div class="cube h3 w3 l3">
+            <div class="face top"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+          </div>
+        </div>
+      </div>
+      <div id="wrapper" class="hidden">
+        <div id="imagebox">
+          <canvas id="input_canvas"></canvas>
+          <img id="compressed_image" />
+          <div id="quality_separator">
+            <div id="quality_separator_icon"></div>
+          </div>
+          <a href="#" id="downloadLink" download
+            ><img src="/images/download.webp" id="downloadBtn"
+          /></a>
+          <button id="uploadBtn">
+            <img src="/images/upload.webp" />
+          </button>
+        </div>
+        <input
+          autocomplete="off"
+          type="range"
+          name="qualityRange"
+          id="qualityRange"
+          orient="vertical"
+          max="5"
+          min="0"
+          step="1"
+          value="0"
+        />
+        <div id="labels">
+          <h1>High Quality</h1>
+          <h1>Low Quality</h1>
+        </div>
+      </div>
+    </div>
+    <div id="infoPane" class="hidden">
+      <div>Input Type</div>
+      <div id="inputImageType"></div>
+      <div>Output Type</div>
+      <div id="outputImageType">
+        <select id="outputImageTypeSelect" disabled>
+          <option value="webp">webp</option>
+          <option value="jpeg">jpeg</option>
+          <option value="png">png</option>
+        </select>
+      </div>
+      <div>Input Size</div>
+      <div id="inputImageSize"></div>
+      <div>Output Size</div>
+      <div id="outputImageSize"></div>
+      <div>Change</div>
+      <div id="imageGainSize"></div>
+    </div>
+    <div id="footer">
+      <h1>Snap Squeeze</h1>
+      <p></p>
+    </div>
+    <div id="dragFeedback" class="hidden">
+      <h1>Drop Image Here</h1>
+    </div>
+    <script src="src/script.js" type="module"></script>
+    <script src="src/UI.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+.vscode
+temp.cpp
+*.exe
+public/*.js
+public/*.wasm
+node_modules/
+dist/*
+dist
